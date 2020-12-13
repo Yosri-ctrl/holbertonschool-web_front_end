@@ -23,7 +23,7 @@ h6 {
 
 a {
   color: var(--text-color);
-  font-style: none;
+  text-decoration: none;
 }
 
 .visually-hidden {
