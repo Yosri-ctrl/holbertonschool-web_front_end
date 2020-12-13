@@ -207,6 +207,7 @@ a:active {
 }
 .sectin-footer {
   padding: var(--section-footer-padding);
+  text-align: var(--section-footer-align);
 }
 .section-title {
   font-family: var(--font-family-title);
