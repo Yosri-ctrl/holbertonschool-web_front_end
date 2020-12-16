@@ -1,0 +1,6 @@
+/*12-loop_header.scss*/
+@for $n from 1 to 6 {
+  h#{$n} {
+    font-size: #{$n}px;
+  }
+}
