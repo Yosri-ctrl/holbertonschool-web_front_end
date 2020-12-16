@@ -1,0 +1,7 @@
+/*100-loop_col.scss*/
+$list: 100%, 50%, 33.3333333333%, 25%;
+@for $n from 1 to 5 {
+  .col-#{$n} {
+    width: nth($list, $n);
+  }
+}
