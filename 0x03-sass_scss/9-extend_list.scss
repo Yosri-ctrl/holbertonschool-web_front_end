@@ -1,15 +1,12 @@
 /*9-extend_list.scss*/
-%font-size {
-  font-size: 12px;
-}
 .info {
-  @extend %font-size;
+  font-size: 12px;
 }
 .success {
   color: #00ff00;
-  @extend %font-size;
+  @extend .info;
 }
 .warning {
   color: #ff0000;
-  @extend %font-size;
+  @extend .info;
 }
