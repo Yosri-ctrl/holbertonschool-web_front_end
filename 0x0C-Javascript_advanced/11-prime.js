@@ -2,7 +2,7 @@ function countPrimeNumbers() {
 	for (let i = 2; i <= 100; i++) {
 		var prime = true;
 		for (let j = 2; j < i; j++) {
-			if (j % i == 0) {
+			if (i % j == 0) {
 				prime = false;
 			}
 		}
@@ -13,8 +13,8 @@ function countPrimeNumbers() {
 }
 
 const t0 = performance.now();
-for (let i = 0; i < 100; i++) {
-	countPrimeNumbers();
+for (let i = 0; i < 10; i++) {
+	setTimeout(function () { countPrimeNumbers(); }, 0);
 }
 const t1 = performance.now();
 console.log(`Execution time of printing countPrimeNumbers was ${t1 - t0} milliseconds.`);
