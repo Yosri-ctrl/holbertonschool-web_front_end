@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+</head>
+
+<body>
+	<h1>Login to the website</h1>
+	<input id="firstname" placeholde="first name">
+	<input id="email" placeholde="email">
+	<button onClick="setCookies()">Log me in</button>
+	<h1>Cookies</h1>
+	<button onClick="showCookies()">Show the cookies</button>
+	<script type="text/javascript">
+		function setCookies() {
+			let firstname = document.getElementById("firstname").value;
+			let email = document.getElementById("email").value;
+			//console.log(email);
+			var today = new Date();
+			var expire = new Date();
+			expire.setTime(today.getTime() + 3600000 * 24 * 10);
+			document.cookie = 'firstname=' + firstname + ";expires=" + expire.toGMTString();
+			document.cookie = 'email=' + email + ";expires=" + expire.toGMTString();
+			//console.log(document.cookie);
+		}
+		function showCookies() {
+			let p = document.createElement("p");
+			p.innerHTML = `Email: ${getCookie("email")} - Firstname: ${getCookie("firstname")}`;
+			document.body.appendChild(p);
+		}
+		function getCookie(name) {
+			var Name = name + "=";
+			var Cookie = document.cookie.split(";");
+			for (var i = 0; i < Cookie.length; i++) {
+				var str = Cookie[i];
+				while (str.charAt(0) == " ") {
+					str = str.substring(1, str.length);
+				}
+				if (str.indexOf(Name) == 0)
+					return str.substring(Name.length, str.length);
+			}
+			return "";
+		}
+	</script>
+</body>
+
+</html>

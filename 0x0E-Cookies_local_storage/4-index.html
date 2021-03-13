@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js"></script>
+</head>
+
+<body>
+	<div id="div">
+		<h2>Login to the website</h2>
+		<input id="firstname" placeholde="first name">
+		<input id="email" placeholde="email">
+		<button onclick="setCookies(); showWelcomeMessageOrForm()" class="login">Log me in</button>
+
+	</div>
+
+
+	<script type="text/javascript">
+		function setCookies() {
+			let firstname = document.getElementById("firstname").value;
+			let email = document.getElementById("email").value;
+			//console.log(email);
+			let today = new Date();
+			let expire = new Date();
+			expire.setTime(today.getTime() + 3600000 * 24 * 10);
+			document.cookie = 'firstname=' + firstname + ";expires=" + expire.toGMTString();
+			document.cookie = 'email=' + email + ";expires=" + expire.toGMTString();
+			//console.log(document.cookie);
+		}
+		function showCookies() {
+			let p = document.createElement("p");
+			p.innerHTML = `Email: ${getCookie("email")} - Firstname: ${getCookie("firstname")}`;
+			document.body.appendChild(p);
+		}
+
+		function showForm() {
+			let welcome = document.getElementById("Welcome");
+			if (welcome) {
+				welcome.remove();
+			}
+			document.getElementById("div").style.display = "block";
+		}
+		function hideForm() {
+			document.getElementById("div").style.display = "none";
+		}
+
+		function showWelcomeMessageOrForm() {
+			if (getCookie("firstname") == "") {
+				showForm();
+			} else {
+				str = document.createElement("div");
+				str.setAttribute("id", "Welcome");
+				let h = document.createElement("h1");
+				h.innerHTML = `Welcome: ${getCookie("firstname")}`;
+				let $a = document.createElement("a");
+				$a.innerHTML = "(logout)";
+				$a.style.cssText =
+					"font-weight: normal; margin-left: 10px; font-style: italic;";
+				$a.onclick = function () {
+					deleteCookiesAndShowForm();
+				};
+				$("body").append(str);
+				str.append(h);
+				h.append($a);
+				hideForm();
+			}
+		}
+		function setCookiesAndShowWelcomeMessage() {
+			let name = document.getElementsByClassName("firstname")[0].value;
+			let Email = document.getElementsByClassName("email")[0].value;
+			Cookies.set("firstname", name, { expires: 10 });
+			Cookies.set("email", Email, { expires: 10 });
+			showWelcomeMessageOrForm();
+		}
+	</script>
+</body>
+
+</html>
